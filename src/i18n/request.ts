@@ -7,8 +7,9 @@ import { APP_CONFIG } from "@/config/app.config";
 export default getRequestConfig(async ({ requestLocale }) => {
 	const requested = await requestLocale;
 	const cookieStore = await cookies();
-	const preferredLocale = cookieStore.get(APP_CONFIG.storageKeys.locale)
-		?.value;
+	const preferredLocale = cookieStore.get(
+		APP_CONFIG.storageKeys.locale,
+	)?.value;
 
 	let locale: string;
 	if (preferredLocale && hasLocale(routing.locales, preferredLocale)) {
