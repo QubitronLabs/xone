@@ -97,7 +97,7 @@ export function RegisterModal() {
 						<div
 							className="pointer-events-none absolute inset-0 opacity-[0.06] bg-size-[122%] bg-center bg-no-repeat"
 							style={{
-								backgroundImage: `url(${IMAGES.common.elements.xVariants.loginRegisterDesktop})`,
+								backgroundImage: `url(${IMAGES.desktop.common.elements.xVariants.loginRegister})`,
 							}}
 						/>
 
@@ -279,13 +279,13 @@ export function RegisterModal() {
 						<div
 							className="absolute inset-0 opacity-50 bg-cover bg-center"
 							style={{
-								backgroundImage: `url(${IMAGES.common.elements.spaceTerrianVariants.registerLoginDesktop})`,
+								backgroundImage: `url(${IMAGES.desktop.common.elements.spaceTerrianVariants.registerLogin})`,
 							}}
 						/>
 
 						<div className="relative z-10 flex h-full flex-col items-center justify-center">
 							<Image
-								src={IMAGES.logos.xone}
+								src={IMAGES.common.logos.xone}
 								alt={APP_CONFIG.name}
 								width={400}
 								height={140}

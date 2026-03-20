@@ -37,7 +37,7 @@ export function MobileBottomNav() {
 				className="flex flex-col items-center justify-center gap-1 p-2"
 			>
 				<Image
-					src={IMAGES.common.diamond}
+					src={IMAGES.common.icons.diamond}
 					alt="Games"
 					width={24}
 					height={24}
@@ -51,7 +51,7 @@ export function MobileBottomNav() {
 				className="relative -mt-4 flex size-14 items-center justify-center rounded-full bg-(image:--gradient-system-primary) shadow-system-glow"
 			>
 				<Image
-					src={IMAGES.logos.x1}
+					src={IMAGES.common.logos.x1}
 					alt="Home"
 					width={32}
 					height={32}
@@ -85,7 +85,7 @@ export function MobileBottomNav() {
 				className="flex flex-col items-center justify-center gap-1 p-2"
 			>
 				<Image
-					src={IMAGES.leftSideBarIcons.user}
+					src={IMAGES.common.leftSideBarIcons.user}
 					alt="Account"
 					width={24}
 					height={24}

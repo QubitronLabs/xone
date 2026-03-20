@@ -8,7 +8,7 @@ const SEO_PAGES: Record<string, SEOPage> = {
 		description:
 			"XONE is the premier crypto casino. Play slots, live casino, crash games and more with instant deposits and withdrawals.",
 		content: "",
-		ogImage: IMAGES.banners.heroBanner,
+		ogImage: IMAGES.desktop.banners.heroBanner,
 		canonicalUrl: "https://xone.gg",
 		noIndex: false,
 		schema: {

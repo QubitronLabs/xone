@@ -21,37 +21,37 @@ export const sidebarNavGroups: NavGroup[] = [
 			{
 				title: "Home",
 				href: "/",
-				icon: IMAGES.leftSideBarIcons.home,
+				icon: IMAGES.common.leftSideBarIcons.home,
 			},
 			{
 				title: "Games",
 				href: "/games",
-				icon: IMAGES.common.diamond,
+				icon: IMAGES.common.icons.diamond,
 			},
 			{
 				title: "Promotions",
 				href: "/promotions",
-				icon: IMAGES.leftSideBarIcons.promotions,
+				icon: IMAGES.common.leftSideBarIcons.promotions,
 			},
 			{
 				title: "My Account",
 				href: "/profile",
-				icon: IMAGES.leftSideBarIcons.user,
+				icon: IMAGES.common.leftSideBarIcons.user,
 			},
 			{
 				title: "Deposit",
 				href: "/deposit",
-				icon: IMAGES.leftSideBarIcons.deposit,
+				icon: IMAGES.common.leftSideBarIcons.deposit,
 			},
 			{
 				title: "Withdrawal",
 				href: "/withdrawal",
-				icon: IMAGES.leftSideBarIcons.withdraw,
+				icon: IMAGES.common.leftSideBarIcons.withdraw,
 			},
 			{
 				title: "Support",
 				href: "/support",
-				icon: IMAGES.leftSideBarIcons.support,
+				icon: IMAGES.common.leftSideBarIcons.support,
 			},
 		],
 	},
@@ -60,12 +60,12 @@ export const sidebarNavGroups: NavGroup[] = [
 			{
 				title: "VIP Club",
 				href: "/vip-club",
-				icon: IMAGES.leftSideBarIcons.vip,
+				icon: IMAGES.common.leftSideBarIcons.vip,
 			},
 			{
 				title: "Ranks",
 				href: "/ranks",
-				icon: IMAGES.leftSideBarIcons.rank,
+				icon: IMAGES.common.leftSideBarIcons.rank,
 			},
 		],
 	},
@@ -80,7 +80,7 @@ export const mainNavItems: NavItem[] = sidebarNavGroups.flatMap(
 export const settingsNavItem: NavItem = {
 	title: "Settings",
 	href: "/settings",
-	icon: IMAGES.common.gear,
+	icon: IMAGES.common.icons.gear,
 };
 
 /** Social links with icons */
@@ -88,27 +88,27 @@ export const socialLinks = [
 	{
 		title: "Discord",
 		href: "https://discord.gg/xone",
-		icon: IMAGES.socials.variant1.discord,
+		icon: IMAGES.common.socials.variant1.discord,
 	},
 	{
 		title: "Facebook",
 		href: "https://facebook.com/xone",
-		icon: IMAGES.socials.variant1.facebook,
+		icon: IMAGES.common.socials.variant1.facebook,
 	},
 	{
 		title: "Telegram",
 		href: "https://t.me/xone_casino",
-		icon: IMAGES.socials.variant1.telegram,
+		icon: IMAGES.common.socials.variant1.telegram,
 	},
 	{
 		title: "Instagram",
 		href: "https://instagram.com/xone",
-		icon: IMAGES.socials.variant1.instagram,
+		icon: IMAGES.common.socials.variant1.instagram,
 	},
 	{
 		title: "YouTube",
 		href: "https://youtube.com/xone",
-		icon: IMAGES.socials.variant1.youtube,
+		icon: IMAGES.common.socials.variant1.youtube,
 	},
 ] as const;
 
@@ -116,7 +116,7 @@ export const userNavItems: NavItem[] = [
 	{
 		title: "Profile",
 		href: "/profile",
-		icon: IMAGES.leftSideBarIcons.user,
+		icon: IMAGES.common.leftSideBarIcons.user,
 	},
 ];
 
@@ -187,63 +187,63 @@ export const footerSocialLinks = [
 	{
 		title: "Twitter",
 		href: "https://twitter.com/xone_casino",
-		icon: IMAGES.socials.variant2.twitter,
+		icon: IMAGES.common.socials.variant2.twitter,
 	},
 	{
 		title: "Telegram",
 		href: "https://t.me/xone_casino",
-		icon: IMAGES.socials.variant2.telegram,
+		icon: IMAGES.common.socials.variant2.telegram,
 	},
 	{
 		title: "Discord",
 		href: "https://discord.gg/xone",
-		icon: IMAGES.socials.variant2.discord,
+		icon: IMAGES.common.socials.variant2.discord,
 	},
 	{
 		title: "Instagram",
 		href: "https://instagram.com/xone",
-		icon: IMAGES.socials.variant2.instagram,
+		icon: IMAGES.common.socials.variant2.instagram,
 	},
 	{
 		title: "Facebook",
 		href: "https://facebook.com/xone",
-		icon: IMAGES.socials.variant2.facebook,
+		icon: IMAGES.common.socials.variant2.facebook,
 	},
 ] as const;
 
 /** Crypto provider icons for footer */
 export const cryptoProviderIcons = [
-	{ alt: "Bitcoin", src: IMAGES.logos.group238 },
-	{ alt: "Ethereum", src: IMAGES.logos.group239 },
-	{ alt: "Stablecoin", src: IMAGES.logos.subtract },
-	{ alt: "Dogecoin", src: IMAGES.logos.group },
-	{ alt: "BNB", src: IMAGES.logos.binancedex },
-	{ alt: "USDT", src: IMAGES.logos.group226 },
+	{ alt: "Bitcoin", src: IMAGES.common.logos.bitcoin },
+	{ alt: "Ethereum", src: IMAGES.common.logos.ethereum },
+	{ alt: "Stablecoin", src: IMAGES.common.logos.stablecoin },
+	{ alt: "Dogecoin", src: IMAGES.common.logos.dogecoin },
+	{ alt: "BNB", src: IMAGES.common.logos.bnb },
+	{ alt: "USDT", src: IMAGES.common.logos.usdt },
 ] as const;
 
 /** Payment provider icons for footer */
 export const paymentProviderIcons = [
 	{
 		alt: "Visa",
-		src: IMAGES.logos.visa,
+		src: IMAGES.common.logos.visa,
 		width: 56,
 		height: 18,
 	},
 	{
 		alt: "Mastercard",
-		src: IMAGES.logos.mastercard,
+		src: IMAGES.common.logos.mastercard,
 		width: 39,
 		height: 24,
 	},
 	{
 		alt: "Apple Pay",
-		src: IMAGES.logos.applePay,
+		src: IMAGES.common.logos.applePay,
 		width: 58,
 		height: 24,
 	},
 	{
 		alt: "Google Pay",
-		src: IMAGES.logos.googlePay,
+		src: IMAGES.common.logos.googlePay,
 		width: 57,
 		height: 23,
 	},

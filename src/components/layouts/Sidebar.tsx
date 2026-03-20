@@ -42,7 +42,7 @@ export default function Sidebar() {
 				<SidebarHeader className="px-[clamp(12px,1vw+4px,20px)] pt-4 pb-0">
 					<Link href="/" className="flex items-center gap-3">
 						<Image
-							src={IMAGES.logos.x1}
+							src={IMAGES.common.logos.x1}
 							alt="X1"
 							width={48}
 							height={48}
