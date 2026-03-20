@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { useTranslations } from "next-intl";
 
-export const metadata: Metadata = {
-	title: "Blog Posts",
-};
+export async function generateMetadata(): Promise<Metadata> {
+	const t = await getTranslations("admin");
+	return { title: t("blogPosts") };
+}
 
 export default function AdminBlogPage() {
 	const t = useTranslations("admin");
+	const tPages = useTranslations("pages");
 
 	return (
 		<div className="space-y-6">
@@ -15,9 +18,7 @@ export default function AdminBlogPage() {
 					{t("blog")}
 				</h1>
 			</div>
-			<p className="text-muted-foreground">
-				Blog posts management table will be rendered here.
-			</p>
+			<p className="text-muted-foreground">{tPages("blogDescription")}</p>
 		</div>
 	);
 }

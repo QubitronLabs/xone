@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { useTranslations } from "next-intl";
 
-export const metadata: Metadata = {
-	title: "Responsible Gambling",
-};
+export async function generateMetadata(): Promise<Metadata> {
+	const t = await getTranslations("pages");
+	return { title: t("responsibleGambling") };
+}
 
 export default function ResponsibleGamblingPage() {
 	const t = useTranslations("pages");
@@ -14,7 +16,7 @@ export default function ResponsibleGamblingPage() {
 				{t("responsibleGambling")}
 			</h1>
 			<p className="text-muted-foreground">
-				Responsible gambling information will be loaded here.
+				{t("responsibleDescription")}
 			</p>
 		</div>
 	);

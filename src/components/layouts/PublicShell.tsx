@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { useTranslations } from "next-intl";
 import { APP_CONFIG } from "@/config/app.config";
 
 interface PublicShellProps {
@@ -6,6 +7,7 @@ interface PublicShellProps {
 }
 
 export function PublicShell({ children }: PublicShellProps) {
+	const t = useTranslations("common");
 	return (
 		<div className="flex min-h-screen flex-col bg-background">
 			{/* Public Header */}
@@ -21,8 +23,8 @@ export function PublicShell({ children }: PublicShellProps) {
 			{/* Footer */}
 			<footer className="border-t border-border bg-muted/30 px-4 py-8 md:px-8">
 				<div className="mx-auto max-w-6xl text-center text-[clamp(13px,0.8rem+0.1vw,14px)] text-muted-foreground">
-					&copy; {new Date().getFullYear()} {APP_CONFIG.title}. All
-					rights reserved.
+					&copy; {new Date().getFullYear()} {APP_CONFIG.title}.{" "}
+					{t("allRightsReserved")}
 				</div>
 			</footer>
 		</div>

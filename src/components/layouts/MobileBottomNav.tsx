@@ -1,21 +1,26 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import { IMAGES } from "@/config/images.config";
 import { useSidebar } from "@/components/ui/sidebar";
+import { useAppStore } from "@/store";
 
 export function MobileBottomNav() {
+	const t = useTranslations("nav");
 	const pathname = usePathname();
 	const { toggleSidebar } = useSidebar();
+	const toggleRightSidebar = useAppStore((s) => s.toggleRightSidebar);
+	const isRightSidebarOpen = useAppStore((s) => s.isRightSidebarOpen);
 
 	return (
-		<nav className="fixed inset-x-0 bottom-0 z-50 flex h-16 items-center justify-around border-t border-system-divider bg-(image:--gradient-system-sidebar-bg) md:hidden">
+		<nav className="fixed inset-x-0 bottom-0 z-100 flex h-16 items-center justify-around border-t border-system-divider bg-(image:--gradient-system-sidebar-bg) md:hidden">
 			{/* Menu toggle */}
 			<button
 				onClick={toggleSidebar}
 				className="flex flex-col items-center justify-center gap-1 p-2"
-				aria-label="Toggle menu"
+				aria-label={t("home")}
 			>
 				<svg
 					width="24"
@@ -59,10 +64,11 @@ export function MobileBottomNav() {
 				/>
 			</Link>
 
-			{/* Chat */}
+			{/* Chat — toggles right sidebar */}
 			<button
+				onClick={toggleRightSidebar}
 				className="flex flex-col items-center justify-center gap-1 p-2"
-				aria-label="Chat"
+				aria-label="Toggle chat"
 			>
 				<svg
 					width="24"
@@ -73,7 +79,11 @@ export function MobileBottomNav() {
 					strokeWidth={2}
 					strokeLinecap="round"
 					strokeLinejoin="round"
-					className="text-system-subtle"
+					className={
+						isRightSidebarOpen
+							? "text-system-primary"
+							: "text-system-subtle"
+					}
 				>
 					<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
 				</svg>

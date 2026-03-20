@@ -46,4 +46,26 @@ export const localeNames: Record<Locale, string> = {
 	zh: "中文",
 };
 
+export const localeFlags: Record<Locale, string> = {
+	en: "🇺🇸",
+	hi: "🇮🇳",
+	ar: "🇸🇦",
+	de: "🇩🇪",
+	es: "🇪🇸",
+	fr: "🇫🇷",
+	it: "🇮🇹",
+	ja: "🇯🇵",
+	ko: "🇰🇷",
+	ms: "🇲🇾",
+	nl: "🇳🇱",
+	pl: "🇵🇱",
+	pt: "🇧🇷",
+	ru: "🇷🇺",
+	sv: "🇸🇪",
+	th: "🇹🇭",
+	tr: "🇹🇷",
+	vi: "🇻🇳",
+	zh: "🇨🇳",
+};
+
 export const rtlLocales: Locale[] = ["ar"];

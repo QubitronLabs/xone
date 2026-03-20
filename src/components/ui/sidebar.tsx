@@ -167,6 +167,7 @@ function Sidebar({
 	className,
 	children,
 	dir,
+	style: propStyle,
 	...props
 }: React.ComponentProps<"div"> & {
 	side?: "left" | "right";
@@ -184,6 +185,7 @@ function Sidebar({
 					className,
 				)}
 				{...props}
+				style={propStyle}
 			>
 				{children}
 			</div>
@@ -192,31 +194,63 @@ function Sidebar({
 
 	if (isMobile) {
 		return (
-			<Sheet open={openMobile} onOpenChange={setOpenMobile} {...props}>
-				<SheetContent
-					dir={dir}
-					data-sidebar="sidebar"
-					data-slot="sidebar"
-					data-mobile="true"
-					className="w-(--sidebar-width) bg-sidebar p-0 text-sidebar-foreground [&>button]:hidden"
+			<div
+				className="group peer text-sidebar-foreground md:hidden"
+				data-state={openMobile ? "expanded" : "collapsed"}
+				data-collapsible="offcanvas"
+				data-variant={variant}
+				data-side={side}
+				data-slot="sidebar"
+			>
+				{/* Gap div — sits in flex flow and pushes content when sidebar opens */}
+				<div
+					data-slot="sidebar-gap"
+					className="shrink-0 bg-transparent transition-[width] duration-300 ease-in-out"
 					style={
 						{
+							width: openMobile ? "var(--sidebar-width)" : "0",
 							"--sidebar-width": SIDEBAR_WIDTH_MOBILE,
 						} as React.CSSProperties
 					}
-					side={side}
+				/>
+				{/* Fixed sidebar container — slides in via width */}
+				<div
+					data-slot="sidebar-container"
+					data-side={side}
+					className={cn(
+						"fixed inset-y-0 left-0 z-30 h-svh overflow-hidden transition-[width] duration-300 ease-in-out",
+						variant === "floating" || variant === "inset"
+							? "p-2"
+							: "",
+						className,
+					)}
+					{...props}
+					style={
+						{
+							...propStyle,
+							width: openMobile ? "var(--sidebar-width)" : "0",
+							"--sidebar-width": SIDEBAR_WIDTH_MOBILE,
+						} as React.CSSProperties
+					}
 				>
-					<SheetHeader className="sr-only">
-						<SheetTitle>Sidebar</SheetTitle>
-						<SheetDescription>
-							Displays the mobile sidebar.
-						</SheetDescription>
-					</SheetHeader>
-					<div className="flex h-full w-full flex-col">
+					<div
+						data-sidebar="sidebar"
+						data-slot="sidebar-inner"
+						className={cn(
+							"flex h-full flex-col bg-sidebar",
+							"group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:shadow-sm",
+						)}
+						style={
+							{
+								width: "var(--sidebar-width)",
+								"--sidebar-width": SIDEBAR_WIDTH_MOBILE,
+							} as React.CSSProperties
+						}
+					>
 						{children}
 					</div>
-				</SheetContent>
-			</Sheet>
+				</div>
+			</div>
 		);
 	}
 
@@ -253,6 +287,7 @@ function Sidebar({
 					className,
 				)}
 				{...props}
+				style={propStyle}
 			>
 				<div
 					data-sidebar="sidebar"

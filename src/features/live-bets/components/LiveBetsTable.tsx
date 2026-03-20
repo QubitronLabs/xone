@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import { useQueryParam } from "@/hooks/use-query-param";
 import { useLiveBets } from "../hooks/useLiveBets";
@@ -44,9 +45,7 @@ function BetsTableRow({ bet }: { bet: LiveBet }) {
 				<span
 					className={cn(
 						"text-sm font-medium",
-						bet.isWin
-							? "text-system-success"
-							: "text-system-muted",
+						bet.isWin ? "text-system-success" : "text-system-muted",
 					)}
 				>
 					{bet.isWin ? "+" : ""}
@@ -58,6 +57,7 @@ function BetsTableRow({ bet }: { bet: LiveBet }) {
 }
 
 export function LiveBetsTable() {
+	const t = useTranslations("bets");
 	const [activeTab, setActiveTab] = useQueryParam("betsTab", "latest");
 	const { bets } = useLiveBets();
 
@@ -67,8 +67,8 @@ export function LiveBetsTable() {
 			: bets.slice(0, 5);
 
 	const tabs = [
-		{ slug: "latest", label: "Latest Bets" },
-		{ slug: "high-rollers", label: "High Rollers" },
+		{ slug: "latest", label: "latestBets" },
+		{ slug: "high-rollers", label: "highRollers" },
 	] as const;
 
 	return (
@@ -83,9 +83,9 @@ export function LiveBetsTable() {
 							type="button"
 							onClick={() => setActiveTab(tab.slug)}
 							className={cn(
-							"rounded-system-full px-4 py-1.5 text-sm font-medium transition-all",
-							isActive
-								? "text-system-white shadow-system-glow"
+								"rounded-system-full px-4 py-1.5 text-sm font-medium transition-all",
+								isActive
+									? "text-system-white shadow-system-glow"
 									: "text-system-muted hover:text-system-text",
 							)}
 							style={
@@ -97,7 +97,7 @@ export function LiveBetsTable() {
 									: undefined
 							}
 						>
-							{tab.label}
+							{t(tab.label)}
 						</button>
 					);
 				})}
@@ -135,7 +135,7 @@ export function LiveBetsTable() {
 									colSpan={5}
 									className="px-4 py-8 text-center text-sm text-system-dim"
 								>
-									No bets yet
+									{t("noBetsYet")}
 								</td>
 							</tr>
 						)}

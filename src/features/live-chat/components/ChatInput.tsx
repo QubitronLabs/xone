@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { useTranslations } from "next-intl";
 
 interface ChatInputProps {
 	onSend: (content: string) => void;
@@ -8,6 +9,7 @@ interface ChatInputProps {
 }
 
 export function ChatInput({ onSend, disabled }: ChatInputProps) {
+	const t = useTranslations("chat");
 	const [value, setValue] = useState("");
 
 	const handleSubmit = (e: FormEvent) => {
@@ -26,7 +28,7 @@ export function ChatInput({ onSend, disabled }: ChatInputProps) {
 				type="text"
 				value={value}
 				onChange={(e) => setValue(e.target.value)}
-				placeholder="Type a message…"
+				placeholder={t("placeholder")}
 				disabled={disabled}
 				className="flex-1 rounded-lg border border-border bg-background px-3 py-2 text-sm placeholder:text-muted-foreground disabled:opacity-50"
 				maxLength={500}
@@ -36,7 +38,7 @@ export function ChatInput({ onSend, disabled }: ChatInputProps) {
 				disabled={disabled || !value.trim()}
 				className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground disabled:opacity-50"
 			>
-				Send
+				{t("send")}
 			</button>
 		</form>
 	);

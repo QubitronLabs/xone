@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { useTranslations } from "next-intl";
 
-export const metadata: Metadata = {
-	title: "Promotions",
-};
+export async function generateMetadata(): Promise<Metadata> {
+	const t = await getTranslations("nav");
+	return { title: t("promotions") };
+}
 
 export default function PromotionsPage() {
 	const t = useTranslations("nav");
+	const tPages = useTranslations("pages");
 
 	return (
 		<div className="mx-auto max-w-6xl px-4 py-12 md:px-8">
@@ -14,7 +17,7 @@ export default function PromotionsPage() {
 				{t("promotions")}
 			</h1>
 			<p className="text-muted-foreground">
-				Active promotions will be displayed here.
+				{tPages("promotionsDescription")}
 			</p>
 		</div>
 	);

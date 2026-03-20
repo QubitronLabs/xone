@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import type { Game } from "@/features/games/types";
 
@@ -16,10 +17,12 @@ export function SearchResults({
 	query,
 	onSelect,
 }: SearchResultsProps) {
+	const t = useTranslations("search");
+
 	if (query.length < 2) {
 		return (
 			<p className="px-4 py-6 text-center text-sm text-muted-foreground">
-				Type at least 2 characters to search
+				{t("minChars")}
 			</p>
 		);
 	}
@@ -43,7 +46,7 @@ export function SearchResults({
 	if (results.length === 0) {
 		return (
 			<p className="px-4 py-6 text-center text-sm text-muted-foreground">
-				No games found for &quot;{query}&quot;
+				{t("noGamesFor", { query })}
 			</p>
 		);
 	}

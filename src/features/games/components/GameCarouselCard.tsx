@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import type { Game } from "../types";
@@ -15,6 +16,8 @@ export function GameCarouselCard({
 	onPlay,
 	className,
 }: GameCarouselCardProps) {
+	const t = useTranslations("common");
+
 	return (
 		<button
 			type="button"
@@ -40,7 +43,7 @@ export function GameCarouselCard({
 			/>
 			{game.isLive && (
 				<span className="absolute top-2 left-2 rounded-full bg-red-500 px-2 py-0.5 text-[10px] font-bold text-white uppercase">
-					Live
+					{t("live")}
 				</span>
 			)}
 		</button>

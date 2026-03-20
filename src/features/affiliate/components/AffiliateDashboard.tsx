@@ -1,8 +1,11 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useAffiliateStats } from "../hooks/useAffiliate";
 
 export function AffiliateDashboard() {
+	const t = useTranslations("affiliate");
+	const tCommon = useTranslations("common");
 	const { data: stats, isLoading } = useAffiliateStats();
 
 	if (isLoading) {
@@ -21,14 +24,14 @@ export function AffiliateDashboard() {
 	if (!stats) return null;
 
 	const cards = [
-		{ label: "Total Referrals", value: stats.totalReferrals },
-		{ label: "Active Referrals", value: stats.activeReferrals },
+		{ label: t("totalReferrals"), value: stats.totalReferrals },
+		{ label: t("activeReferrals"), value: stats.activeReferrals },
 		{
-			label: "Total Earnings",
+			label: t("totalEarnings"),
 			value: `$${stats.totalEarnings.toFixed(2)}`,
 		},
 		{
-			label: "Pending Earnings",
+			label: t("pendingEarnings"),
 			value: `$${stats.pendingEarnings.toFixed(2)}`,
 		},
 	];
@@ -51,7 +54,7 @@ export function AffiliateDashboard() {
 
 			<div className="rounded-xl border border-border bg-card p-4">
 				<p className="text-sm text-muted-foreground">
-					Your Referral Link
+					{t("referralLink")}
 				</p>
 				<div className="mt-2 flex gap-2">
 					<input
@@ -66,7 +69,7 @@ export function AffiliateDashboard() {
 						}
 						className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground"
 					>
-						Copy
+						{tCommon("copy")}
 					</button>
 				</div>
 			</div>

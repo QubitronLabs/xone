@@ -19,37 +19,37 @@ export const sidebarNavGroups: NavGroup[] = [
 	{
 		items: [
 			{
-				title: "Home",
+				title: "home",
 				href: "/",
 				icon: IMAGES.common.leftSideBarIcons.home,
 			},
 			{
-				title: "Games",
+				title: "games",
 				href: "/games",
 				icon: IMAGES.common.icons.diamond,
 			},
 			{
-				title: "Promotions",
+				title: "promotions",
 				href: "/promotions",
 				icon: IMAGES.common.leftSideBarIcons.promotions,
 			},
 			{
-				title: "My Account",
+				title: "myAccount",
 				href: "/profile",
 				icon: IMAGES.common.leftSideBarIcons.user,
 			},
 			{
-				title: "Deposit",
+				title: "deposit",
 				href: "/deposit",
 				icon: IMAGES.common.leftSideBarIcons.deposit,
 			},
 			{
-				title: "Withdrawal",
+				title: "withdrawal",
 				href: "/withdrawal",
 				icon: IMAGES.common.leftSideBarIcons.withdraw,
 			},
 			{
-				title: "Support",
+				title: "support",
 				href: "/support",
 				icon: IMAGES.common.leftSideBarIcons.support,
 			},
@@ -58,12 +58,12 @@ export const sidebarNavGroups: NavGroup[] = [
 	{
 		items: [
 			{
-				title: "VIP Club",
+				title: "vipClub",
 				href: "/vip-club",
 				icon: IMAGES.common.leftSideBarIcons.vip,
 			},
 			{
-				title: "Ranks",
+				title: "ranks",
 				href: "/ranks",
 				icon: IMAGES.common.leftSideBarIcons.rank,
 			},
@@ -78,7 +78,7 @@ export const mainNavItems: NavItem[] = sidebarNavGroups.flatMap(
 
 /** Settings nav item */
 export const settingsNavItem: NavItem = {
-	title: "Settings",
+	title: "settings",
 	href: "/settings",
 	icon: IMAGES.common.icons.gear,
 };
@@ -114,7 +114,7 @@ export const socialLinks = [
 
 export const userNavItems: NavItem[] = [
 	{
-		title: "Profile",
+		title: "profile",
 		href: "/profile",
 		icon: IMAGES.common.leftSideBarIcons.user,
 	},
@@ -122,17 +122,17 @@ export const userNavItems: NavItem[] = [
 
 export const adminNavItems: NavItem[] = [
 	{
-		title: "Dashboard",
+		title: "dashboard",
 		href: "/admin",
 		icon: "layout-dashboard",
 		roles: ["admin"],
 	},
-	{ title: "Users", href: "/admin/users", icon: "users", roles: ["admin"] },
-	{ title: "Blog", href: "/admin/blog", icon: "file-text", roles: ["admin"] },
-	{ title: "Tags", href: "/admin/tags", icon: "tag", roles: ["admin"] },
-	{ title: "SEO", href: "/admin/seo", icon: "search", roles: ["admin"] },
+	{ title: "users", href: "/admin/users", icon: "users", roles: ["admin"] },
+	{ title: "blog", href: "/admin/blog", icon: "file-text", roles: ["admin"] },
+	{ title: "tags", href: "/admin/tags", icon: "tag", roles: ["admin"] },
+	{ title: "seo", href: "/admin/seo", icon: "search", roles: ["admin"] },
 	{
-		title: "Settings",
+		title: "settings",
 		href: "/admin/settings",
 		icon: "settings",
 		roles: ["admin"],
@@ -140,9 +140,9 @@ export const adminNavItems: NavItem[] = [
 ];
 
 export const legalNavItems: NavItem[] = [
-	{ title: "Privacy Policy", href: "/privacy-policy" },
-	{ title: "Terms & Conditions", href: "/terms-and-conditions" },
-	{ title: "Responsible Gambling", href: "/responsible-gambling" },
+	{ title: "privacyPolicy", href: "/privacy-policy" },
+	{ title: "termsConditions", href: "/terms-and-conditions" },
+	{ title: "responsibleGaming", href: "/responsible-gambling" },
 ];
 
 /** Footer link group structure */
@@ -154,30 +154,30 @@ export interface FooterLinkGroup {
 /** Footer navigation link groups — matches Figma footer layout */
 export const footerLinkGroups: FooterLinkGroup[] = [
 	{
-		title: "Platform",
+		title: "platform",
 		links: [
-			{ title: "Casino", href: "/games" },
-			{ title: "Loyalty Program", href: "/vip-club" },
-			{ title: "Refer a friend", href: "/affiliate" },
-			{ title: "Partnership Program", href: "/affiliate" },
+			{ title: "casino", href: "/games" },
+			{ title: "loyaltyProgram", href: "/vip-club" },
+			{ title: "referAFriend", href: "/affiliate" },
+			{ title: "partnershipProgram", href: "/affiliate" },
 		],
 	},
 	{
-		title: "About Us",
+		title: "aboutUs",
 		links: [
-			{ title: "News", href: "/news" },
-			{ title: "Work with us", href: "/careers" },
-			{ title: "Bonus Terms/program", href: "/promotions" },
-			{ title: "Gitbook / white-paper", href: "/whitepaper" },
+			{ title: "news", href: "/news" },
+			{ title: "workWithUs", href: "/careers" },
+			{ title: "bonusTerms", href: "/promotions" },
+			{ title: "gitbook", href: "/whitepaper" },
 		],
 	},
 	{
-		title: "Support / Legal",
+		title: "supportLegal",
 		links: [
-			{ title: "Live Support", href: "/support" },
-			{ title: "Privacy policy", href: "/privacy-policy" },
-			{ title: "Responsible Gaming", href: "/responsible-gambling" },
-			{ title: "Terms & Conditions", href: "/terms-and-conditions" },
+			{ title: "liveSupport", href: "/support" },
+			{ title: "privacyPolicy", href: "/privacy-policy" },
+			{ title: "responsibleGaming", href: "/responsible-gambling" },
+			{ title: "termsConditions", href: "/terms-and-conditions" },
 		],
 	},
 ];

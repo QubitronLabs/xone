@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import type { Profile } from "../types";
 
@@ -9,6 +10,8 @@ interface ProfileCardProps {
 }
 
 export function ProfileCard({ profile, isOwnProfile }: ProfileCardProps) {
+	const t = useTranslations("profile");
+
 	return (
 		<div className="overflow-hidden rounded-xl border border-border bg-card">
 			<div className="h-24 bg-gradient-to-r from-primary/30 to-primary/10" />
@@ -47,17 +50,23 @@ export function ProfileCard({ profile, isOwnProfile }: ProfileCardProps) {
 				<div className="mt-4 grid grid-cols-3 gap-4 text-center">
 					<div>
 						<p className="text-lg font-bold">{profile.totalBets}</p>
-						<p className="text-xs text-muted-foreground">Bets</p>
+						<p className="text-xs text-muted-foreground">
+							{t("bets")}
+						</p>
 					</div>
 					<div>
 						<p className="text-lg font-bold">Lvl {profile.level}</p>
-						<p className="text-xs text-muted-foreground">Level</p>
+						<p className="text-xs text-muted-foreground">
+							{t("level")}
+						</p>
 					</div>
 					<div>
 						<p className="text-lg font-bold">
 							${profile.totalWagered.toFixed(0)}
 						</p>
-						<p className="text-xs text-muted-foreground">Wagered</p>
+						<p className="text-xs text-muted-foreground">
+							{t("wagered")}
+						</p>
 					</div>
 				</div>
 			</div>

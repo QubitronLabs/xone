@@ -1,8 +1,10 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useBalance } from "../hooks/useBalance";
 
 export function OverviewTab() {
+	const t = useTranslations("wallet");
 	const { tokens, isLoading } = useBalance();
 
 	if (isLoading) {
@@ -21,7 +23,7 @@ export function OverviewTab() {
 	if (!tokens?.length) {
 		return (
 			<div className="py-12 text-center text-muted-foreground">
-				No tokens found. Make a deposit to get started.
+				{t("noTokens")}
 			</div>
 		);
 	}

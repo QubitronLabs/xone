@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { HeroBanner } from "@/features/banners/components/HeroBanner";
 import { ContentCardRow } from "@/features/banners/components/ContentCardRow";
 import { GameCategoryBar } from "@/features/games/components/GameCategoryBar";
@@ -10,6 +11,7 @@ import { useHomepageGames } from "@/features/games/hooks/useHomepageGames";
 import { LiveBetsTable } from "@/features/live-bets/components/LiveBetsTable";
 
 export function HomepageContent() {
+	const t = useTranslations("games");
 	const {
 		homeGames,
 		homeGamesTotal,
@@ -39,7 +41,7 @@ export function HomepageContent() {
 
 			{/* Home Games Carousel */}
 			<GameCarouselSection
-				title="Home Games"
+				title={t("homeGames")}
 				games={homeGames}
 				isLoading={isLoading}
 				totalCount={homeGamesTotal}
@@ -48,7 +50,7 @@ export function HomepageContent() {
 
 			{/* Popular Games Carousel */}
 			<GameCarouselSection
-				title="Popular"
+				title={t("popular")}
 				games={popularGames}
 				isLoading={isLoading}
 				totalCount={popularGamesTotal}
@@ -57,7 +59,7 @@ export function HomepageContent() {
 
 			{/* Bonus Games Carousel */}
 			<GameCarouselSection
-				title="Bonus Games"
+				title={t("bonusGames")}
 				games={bonusGames}
 				isLoading={isLoading}
 				totalCount={bonusGamesTotal}

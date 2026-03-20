@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema, type LoginFormData } from "../schemas/auth.schema";
@@ -12,6 +13,7 @@ import { AuthInput } from "./AuthInput";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 
 export function LoginModal() {
+	const t = useTranslations("auth");
 	const activeModal = useAppStore((s) => s.activeModal);
 	const openModal = useAppStore((s) => s.openModal);
 	const closeModal = useAppStore((s) => s.closeModal);
@@ -51,7 +53,9 @@ export function LoginModal() {
 				className="h-auto max-h-[calc(100vh-2rem)] w-full max-w-[90dvw]! lg:max-w-5xl! 2xl:max-w-7xl! overflow-hidden rounded-[32px] border-0 p-0 ring-0 bg-(image:--gradient-system-auth-dialog)"
 			>
 				{/* Accessible title (visually hidden) */}
-				<DialogTitle className="sr-only">Sign In</DialogTitle>
+				<DialogTitle className="sr-only">
+					{t("loginButton")}
+				</DialogTitle>
 
 				{/* Custom close button */}
 				<button
@@ -95,13 +99,13 @@ export function LoginModal() {
 
 							{/* Subtitle */}
 							<p className="mt-10 text-center text-[clamp(1rem,2.6vw,1.5rem)] font-medium leading-[clamp(1rem,3.5vw,2rem)] tracking-[0.192px] text-system-text [font-variation-settings:var(--font-system-variation)]">
-								You don&apos;t have an account yet?{" "}
+								{t("noAccount")}{" "}
 								<button
 									type="button"
 									onClick={switchToRegister}
 									className="cursor-pointer bg-clip-text font-medium leading-[clamp(1rem,3.5vw,2rem)] text-transparent bg-(image:--gradient-system-text-brand) br- [font-variation-settings:var(--font-system-variation)]"
 								>
-									Register
+									{t("registerButton")}
 								</button>
 							</p>
 
@@ -112,7 +116,7 @@ export function LoginModal() {
 							>
 								<AuthInput
 									type="email"
-									placeholder="E-mail"
+									placeholder={t("emailPlaceholder")}
 									autoComplete="email"
 									error={errors.email?.message}
 									{...register("email")}
@@ -121,7 +125,7 @@ export function LoginModal() {
 								<div className="mt-6">
 									<AuthInput
 										type="password"
-										placeholder="Password"
+										placeholder={t("passwordPlaceholder")}
 										autoComplete="current-password"
 										error={errors.password?.message}
 										{...register("password")}
@@ -134,7 +138,7 @@ export function LoginModal() {
 										type="button"
 										className="bg-clip-text text-center text-[clamp(1rem,2.3vw,1.25rem)] font-medium leading-[clamp(1rem,3vw,1.5rem)] text-transparent bg-(image:--gradient-system-text-brand) [font-variation-settings:var(--font-system-variation)]"
 									>
-										Forgot Password?
+										{t("forgotPassword")}
 									</button>
 								</div>
 
@@ -143,7 +147,7 @@ export function LoginModal() {
 									<p className="mt-4 text-center text-sm font-medium text-red-400">
 										{loginError instanceof Error
 											? loginError.message
-											: "Login failed. Please try again."}
+											: t("loginFailed")}
 									</p>
 								)}
 
@@ -153,14 +157,16 @@ export function LoginModal() {
 									disabled={isLoggingIn}
 									className="mt-10 h-16 w-full rounded-[24px] border-2 border-system-border text-[clamp(1.125rem,2.5vw,1.25rem)] font-medium leading-5 text-white transition-opacity hover:opacity-90 disabled:pointer-events-none disabled:opacity-50 bg-(image:--gradient-system-brand-button) [font-variation-settings:var(--font-system-variation)]"
 								>
-									{isLoggingIn ? "Signing in…" : "Sign In"}
+									{isLoggingIn
+										? t("loginButtonLoading")
+										: t("loginButton")}
 								</button>
 
 								{/* OR Divider */}
 								<div className="mt-8 flex items-center gap-4">
 									<div className="h-px flex-1 bg-system-divider" />
 									<span className="text-base font-medium leading-5 text-system-muted [font-variation-settings:var(--font-system-variation)]">
-										OR
+										{t("orContinueWith")}
 									</span>
 									<div className="h-px flex-1 bg-system-divider" />
 								</div>
@@ -194,7 +200,7 @@ export function LoginModal() {
 											fill="#1976D2"
 										/>
 									</svg>
-									Continue with Google
+									{t("continueWithGoogle")}
 								</button>
 							</form>
 						</div>
@@ -221,7 +227,7 @@ export function LoginModal() {
 								className="w-100 max-w-[80%]"
 							/>
 							<p className="mt-6 text-center text-[clamp(1.5rem,3vw,1.875rem)] font-notable uppercase tracking-widest text-system-muted">
-								New Era Casino
+								{t("newEraCasino")}
 							</p>
 						</div>
 					</div>

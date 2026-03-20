@@ -23,9 +23,9 @@ export const APP_CONFIG = {
 
 	/** External URLs */
 	urls: {
-		site: process.env.NEXT_PUBLIC_SITE_URL ?? "https://xone.casino",
-		api: process.env.NEXT_PUBLIC_API_URL ?? "/api",
-		socket: process.env.NEXT_PUBLIC_SOCKET_URL ?? "",
+		site: process.env.NEXT_PUBLIC_SITE_URL || "https://xone.casino",
+		api: process.env.NEXT_PUBLIC_API_URL || "/api",
+		socket: process.env.NEXT_PUBLIC_SOCKET_URL || "",
 	},
 
 	/** Social media links */
@@ -38,6 +38,7 @@ export const APP_CONFIG = {
 	/** localStorage / sessionStorage key names */
 	storageKeys: {
 		authToken: "xone-auth-token",
+		locale: "xone-locale",
 	},
 
 	/** Zustand store persistence keys */

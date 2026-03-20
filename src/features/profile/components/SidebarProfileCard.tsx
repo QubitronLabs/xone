@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { IMAGES } from "@/config/images.config";
@@ -22,20 +23,23 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 
 const MENU_ITEMS = [
-	{ label: "Profile", href: "/profile", icon: UserIcon },
-	{ label: "Win / Loss", href: "/profile?tab=bets", icon: ChartBarLineIcon },
-	{ label: "Referral Bonus", href: "/referral", icon: GiftIcon },
-	{ label: "Turnover Bonus", href: "/turnover", icon: PercentCircleIcon },
+	{ label: "title", href: "/profile", icon: UserIcon },
+	{ label: "winLoss", href: "/profile?tab=bets", icon: ChartBarLineIcon },
+	{ label: "referralBonus", href: "/referral", icon: GiftIcon },
+	{ label: "turnoverBonus", href: "/turnover", icon: PercentCircleIcon },
 ] as const;
 
-const WALLET_TABS = ["Wallet", "Deposit", "Withdraw", "Swap", "Tip"] as const;
+const WALLET_TABS = ["title", "deposit", "withdraw", "swap", "tip"] as const;
 
 function AuthenticatedCard() {
+	const tProfile = useTranslations("profile");
+	const tWallet = useTranslations("wallet");
+	const tNav = useTranslations("nav");
 	const { user, logout } = useAuth();
 	const [isExpanded, setIsExpanded] = useState(false);
 	const [isWalletOpen, setIsWalletOpen] = useState(false);
 	const [walletTab, setWalletTab] =
-		useState<(typeof WALLET_TABS)[number]>("Wallet");
+		useState<(typeof WALLET_TABS)[number]>("title");
 
 	const xpProgress = 0.75;
 	const level = 14;
@@ -88,7 +92,7 @@ function AuthenticatedCard() {
 									"var(--font-system-variation)",
 							}}
 						>
-							Need Exp:{" "}
+							{tProfile("needExp")}{" "}
 							<span className="text-system-soft">4,400</span>
 						</p>
 					</div>
@@ -126,7 +130,7 @@ function AuthenticatedCard() {
 										size={18}
 										className="text-system-muted"
 									/>
-									{item.label}
+									{tProfile(item.label)}
 								</Link>
 							))}
 							<button
@@ -138,7 +142,7 @@ function AuthenticatedCard() {
 									size={18}
 									className="text-red-400"
 								/>
-								Log Out
+								{tNav("logout")}
 							</button>
 						</div>
 					</div>
@@ -188,7 +192,9 @@ function AuthenticatedCard() {
 			{/* Wallet modal — global centered dialog */}
 			<Dialog open={isWalletOpen} onOpenChange={setIsWalletOpen}>
 				<DialogContent className="max-w-md rounded-system-2xl border border-system-border-strong bg-(image:--gradient-system-card) p-0 shadow-xl">
-					<DialogTitle className="sr-only">Wallet</DialogTitle>
+					<DialogTitle className="sr-only">
+						{tWallet("title")}
+					</DialogTitle>
 					{/* Tab bar */}
 					<div className="flex gap-1 rounded-t-system-2xl bg-system-overlay p-2">
 						{WALLET_TABS.map((tab) => (
@@ -201,7 +207,7 @@ function AuthenticatedCard() {
 										: "text-system-muted hover:text-system-text"
 								}`}
 							>
-								{tab}
+								{tWallet(tab)}
 							</button>
 						))}
 					</div>
@@ -211,7 +217,9 @@ function AuthenticatedCard() {
 						<div className="flex flex-col items-center gap-3 text-system-muted">
 							<HugeiconsIcon icon={Wallet01Icon} size={32} />
 							<span className="text-sm font-medium">
-								{walletTab} content
+								{tWallet("walletContent", {
+									tab: tWallet(walletTab),
+								})}
 							</span>
 						</div>
 					</div>
@@ -222,6 +230,8 @@ function AuthenticatedCard() {
 }
 
 function UnauthenticatedCard() {
+	const tNav = useTranslations("nav");
+	const tAuth = useTranslations("auth");
 	const openModal = useAppStore((s) => s.openModal);
 
 	return (
@@ -232,14 +242,14 @@ function UnauthenticatedCard() {
 					onClick={() => openModal("register")}
 					className="h-11 flex-1 rounded-system-xl bg-(image:--gradient-system-primary) text-sm font-semibold tracking-[0.72px] text-white shadow-system-glow hover:opacity-90"
 				>
-					Register
+					{tNav("register")}
 				</Button>
 				<Button
 					variant="outline"
 					onClick={() => openModal("login")}
 					className="h-11 flex-1 rounded-system-xl border-2 border-system-border bg-transparent text-sm font-semibold tracking-[0.72px] text-system-text hover:bg-system-overlay hover:text-white"
 				>
-					Sign In
+					{tNav("login")}
 				</Button>
 			</div>
 
@@ -247,7 +257,7 @@ function UnauthenticatedCard() {
 			<div className="flex w-full items-center gap-3">
 				<div className="h-px flex-1 bg-system-divider" />
 				<span className="text-xs font-medium text-system-muted">
-					or continue with
+					{tAuth("orContinueWithWallet")}
 				</span>
 				<div className="h-px flex-1 bg-system-divider" />
 			</div>
@@ -286,5 +296,5 @@ function UnauthenticatedCard() {
 export function SidebarProfileCard() {
 	const isAuthenticated = useAuth().isAuthenticated;
 
-	return !isAuthenticated ? <AuthenticatedCard /> : <UnauthenticatedCard />;
+	return isAuthenticated ? <AuthenticatedCard /> : <UnauthenticatedCard />;
 }

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema, type RegisterFormData } from "../schemas/auth.schema";
@@ -13,6 +14,7 @@ import { AuthInput } from "./AuthInput";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 
 export function RegisterModal() {
+	const t = useTranslations("auth");
 	const activeModal = useAppStore((s) => s.activeModal);
 	const openModal = useAppStore((s) => s.openModal);
 	const closeModal = useAppStore((s) => s.closeModal);
@@ -66,7 +68,9 @@ export function RegisterModal() {
 				showCloseButton={false}
 				className="h-auto max-h-[calc(100vh-2rem)] w-full max-w-[90dvw]! lg:max-w-5xl! 2xl:max-w-7xl! overflow-hidden rounded-[32px] border-0 p-0 ring-0 bg-(image:--gradient-system-auth-dialog)"
 			>
-				<DialogTitle className="sr-only">Registration</DialogTitle>
+				<DialogTitle className="sr-only">
+					{t("registerButton")}
+				</DialogTitle>
 
 				{/* Custom close button */}
 				<button
@@ -112,13 +116,13 @@ export function RegisterModal() {
 
 							{/* Subtitle */}
 							<p className="mt-10 text-center text-[clamp(1rem,2.6vw,1.5rem)] font-medium leading-[clamp(1rem,3.5vw,2rem)] tracking-[0.192px] text-system-text [font-variation-settings:var(--font-system-variation)]">
-								Already have an account?{" "}
+								{t("hasAccount")}{" "}
 								<button
 									type="button"
 									onClick={switchToLogin}
 									className="cursor-pointer bg-clip-text font-medium leading-[clamp(1rem,3.5vw,2rem)] text-transparent bg-(image:--gradient-system-text-brand) [font-variation-settings:var(--font-system-variation)]"
 								>
-									Log In
+									{t("signIn")}
 								</button>
 							</p>
 
@@ -129,7 +133,7 @@ export function RegisterModal() {
 							>
 								<AuthInput
 									type="text"
-									placeholder="Username"
+									placeholder={t("usernamePlaceholder")}
 									autoComplete="username"
 									error={errors.username?.message}
 									{...register("username")}
@@ -138,7 +142,7 @@ export function RegisterModal() {
 								<div className="mt-6">
 									<AuthInput
 										type="email"
-										placeholder="E-mail"
+										placeholder={t("emailPlaceholder")}
 										autoComplete="email"
 										error={errors.email?.message}
 										{...register("email")}
@@ -148,7 +152,7 @@ export function RegisterModal() {
 								<div className="mt-6">
 									<AuthInput
 										type="password"
-										placeholder="Password"
+										placeholder={t("passwordPlaceholder")}
 										autoComplete="new-password"
 										error={errors.password?.message}
 										{...register("password")}
@@ -158,7 +162,9 @@ export function RegisterModal() {
 								<div className="mt-6">
 									<AuthInput
 										type="password"
-										placeholder="Repeat Password"
+										placeholder={t(
+											"confirmPasswordPlaceholder",
+										)}
 										autoComplete="new-password"
 										error={errors.confirmPassword?.message}
 										{...register("confirmPassword")}
@@ -197,17 +203,16 @@ export function RegisterModal() {
 									</button>
 
 									<p className="text-[clamp(0.875rem,2vw,1.125rem)] font-medium leading-[clamp(1.25rem,3vw,1.5rem)] text-system-muted [font-variation-settings:var(--font-system-variation)]">
-										I agree with{" "}
+										{t("termsAgree")}{" "}
 										<span className="bg-(image:--gradient-system-text-brand) bg-clip-text text-transparent">
-											Terms of Conditions{" "}
+											{t("termsOfConditions")}{" "}
 										</span>
-										and confirm that I&apos;m at least 18
-										years old
+										{t("termsAgeConfirm")}
 									</p>
 								</div>
 								{termsError && (
 									<p className="mt-1.5 pl-16 text-sm font-medium text-red-400">
-										You must accept the terms to continue
+										{t("termsRequired")}
 									</p>
 								)}
 
@@ -216,7 +221,7 @@ export function RegisterModal() {
 									<p className="mt-4 text-center text-sm font-medium text-red-400">
 										{registerError instanceof Error
 											? registerError.message
-											: "Registration failed. Please try again."}
+											: t("registerFailed")}
 									</p>
 								)}
 
@@ -227,8 +232,8 @@ export function RegisterModal() {
 									className="mt-10 h-16 w-full rounded-[24px] border-2 border-system-border text-[clamp(1.125rem,2.5vw,1.25rem)] font-medium leading-5 text-white transition-opacity hover:opacity-90 disabled:pointer-events-none disabled:opacity-50 [font-variation-settings:var(--font-system-variation)] bg-(image:--gradient-system-brand-button)"
 								>
 									{isRegistering
-										? "Creating account…"
-										: "Registration"}
+										? t("registerButtonLoading")
+										: t("registerButton")}
 								</button>
 
 								{/* OR Divider */}
@@ -268,7 +273,7 @@ export function RegisterModal() {
 											fill="#1976D2"
 										/>
 									</svg>
-									Continue with Google
+									{t("continueWithGoogle")}
 								</button>
 							</form>
 						</div>
@@ -292,7 +297,7 @@ export function RegisterModal() {
 								className="w-100 max-w-[80%]"
 							/>
 							<p className="mt-6 text-center text-[clamp(1.5rem,3vw,1.875rem)] font-notable uppercase tracking-widest text-system-muted">
-								New Era Casino
+								{t("newEraCasino")}
 							</p>
 						</div>
 					</div>

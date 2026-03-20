@@ -1,11 +1,13 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema, type LoginFormData } from "../schemas/auth.schema";
 import { useAuth } from "../hooks/useAuth";
 
 export function LoginForm() {
+	const t = useTranslations("auth");
 	const { login, isLoggingIn, loginError } = useAuth();
 
 	const {
@@ -27,7 +29,7 @@ export function LoginForm() {
 					htmlFor="email"
 					className="text-sm font-medium text-foreground"
 				>
-					Email
+					{t("emailLabel")}
 				</label>
 				<input
 					id="email"
@@ -49,7 +51,7 @@ export function LoginForm() {
 					htmlFor="password"
 					className="text-sm font-medium text-foreground"
 				>
-					Password
+					{t("passwordLabel")}
 				</label>
 				<input
 					id="password"
@@ -70,7 +72,7 @@ export function LoginForm() {
 				<p className="text-sm text-destructive">
 					{loginError instanceof Error
 						? loginError.message
-						: "Login failed"}
+						: t("loginFailed")}
 				</p>
 			)}
 
@@ -79,7 +81,7 @@ export function LoginForm() {
 				disabled={isLoggingIn}
 				className="flex h-10 w-full items-center justify-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 disabled:pointer-events-none disabled:opacity-50"
 			>
-				{isLoggingIn ? "Signing in…" : "Sign in"}
+				{isLoggingIn ? t("loginButtonLoading") : t("loginButton")}
 			</button>
 		</form>
 	);

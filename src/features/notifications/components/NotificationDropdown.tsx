@@ -1,27 +1,29 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import { useNotifications } from "../hooks/useNotifications";
 
 export function NotificationDropdown() {
+	const t = useTranslations("notifications");
 	const { notifications, markRead, markAllRead } = useNotifications();
 
 	return (
 		<div className="w-80 overflow-hidden rounded-xl border border-border bg-card shadow-xl">
 			<div className="flex items-center justify-between border-b border-border px-4 py-3">
-				<h3 className="text-sm font-semibold">Notifications</h3>
+				<h3 className="text-sm font-semibold">{t("title")}</h3>
 				<button
 					type="button"
 					onClick={() => markAllRead()}
 					className="text-xs text-primary hover:underline"
 				>
-					Mark all read
+					{t("markAllRead")}
 				</button>
 			</div>
 			<div className="max-h-[400px] overflow-y-auto">
 				{notifications.length === 0 ? (
 					<p className="px-4 py-6 text-center text-sm text-muted-foreground">
-						No notifications
+						{t("noNotifications")}
 					</p>
 				) : (
 					notifications.map((n) => (

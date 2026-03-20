@@ -1,66 +1,86 @@
 "use client";
 
+import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { useAppStore } from "@/store";
 import { useAuthStore } from "@/features/auth/store/auth.slice";
-import { SidebarTrigger } from "@/components/ui/sidebar";
+import { useSidebar } from "@/components/ui/sidebar";
+import { LanguageSelector } from "@/components/common/LanguageSelector";
+import { IMAGES } from "@/config/images.config";
+import { HugeiconsIcon } from "@hugeicons/react";
+import {
+	SearchIcon,
+	SidebarLeftIcon,
+	SidebarRightIcon,
+} from "@hugeicons/core-free-icons";
 
 export function Header() {
+	const t = useTranslations("header");
 	const openModal = useAppStore((s) => s.openModal);
+	const toggleRightSidebar = useAppStore((s) => s.toggleRightSidebar);
+	const isRightSidebarOpen = useAppStore((s) => s.isRightSidebarOpen);
 	const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
+	const { toggleSidebar } = useSidebar();
 
 	return (
-		<header className="sticky top-0 w-[(100dvw-var(--sidebar-width))] z-30 flex h-[clamp(48px,3.5vw+8px,56px)] items-center justify-between border-b border-system-divider bg-system-bg/95 px-[clamp(12px,1vw+4px,16px)] backdrop-blur supports-backdrop-filter:bg-system-bg/60">
-			{/* Left — Sidebar Toggle */}
-			<div className="flex items-center gap-[clamp(8px,0.5vw+4px,12px)]">
-				<SidebarTrigger className="text-system-subtle hover:bg-system-overlay" />
+		<header className="w-full z-30 flex h-14 shrink-0 items-center justify-between bg-system-bg/95 px-[clamp(16px,1.5vw,24px)] backdrop-blur-system-glass [font-variation-settings:var(--font-system-variation)]">
+			{/* Left — X1 Logo as Sidebar Toggle (mobile only) */}
+			<div className="flex items-center md:hidden">
+				<button
+					onClick={toggleSidebar}
+					className="flex size-9 items-center justify-center rounded-system-base transition-transform duration-200 active:scale-95"
+					aria-label="Toggle sidebar"
+				>
+					<Image
+						src={IMAGES.common.logos.x1}
+						alt="X1"
+						width={32}
+						height={32}
+						className="size-8"
+					/>
+				</button>
 			</div>
 
-			{/* Center — Search */}
-			<button
-				onClick={() => openModal("search")}
-				className="mx-[clamp(8px,0.5vw+4px,16px)] flex h-9 flex-1 max-w-md items-center gap-2 rounded-full border border-system-divider bg-system-input/50 px-[clamp(8px,0.5vw+4px,16px)] text-[clamp(13px,0.8rem+0.1vw,14px)] text-system-subtle transition-colors hover:bg-system-input"
-			>
-				<svg
-					width="16"
-					height="16"
-					fill="none"
-					viewBox="0 0 24 24"
-					stroke="currentColor"
-					strokeWidth={2}
-				>
-					<circle cx="11" cy="11" r="8" />
-					<path strokeLinecap="round" d="m21 21-4.35-4.35" />
-				</svg>
-				<span>Search games…</span>
-				<kbd className="ml-auto hidden rounded bg-system-overlay px-1.5 py-0.5 text-[clamp(10px,0.65rem+0.05vw,12px)] text-system-subtle md:inline-block">
-					⌘K
-				</kbd>
-			</button>
-
 			{/* Right — Actions */}
-			<div className="flex items-center gap-[clamp(4px,0.3vw+2px,8px)]">
-				{isAuthenticated ? (
+			<div className="ml-auto flex items-center gap-2.5">
+				<button
+					onClick={() => openModal("search")}
+					className="flex size-9 items-center justify-center rounded-system-base text-system-muted transition-colors duration-200 hover:bg-white/5 hover:text-system-text"
+					aria-label={t("searchPlaceholder")}
+				>
+					<HugeiconsIcon
+						icon={SearchIcon}
+						className="size-5"
+						strokeWidth={1.5}
+					/>
+				</button>
+
+				<LanguageSelector />
+
+				{/* Right sidebar toggle — visible only between lg and xl */}
+				<button
+					onClick={toggleRightSidebar}
+					className="hidden size-9 items-center justify-center rounded-system-base text-system-muted transition-colors duration-200 hover:bg-white/5 hover:text-system-text lg:flex xl:hidden"
+					aria-label="Toggle right sidebar"
+				>
+					<HugeiconsIcon
+						icon={
+							isRightSidebarOpen
+								? SidebarRightIcon
+								: SidebarLeftIcon
+						}
+						className="size-5"
+						strokeWidth={1.5}
+					/>
+				</button>
+
+				{isAuthenticated && (
 					<button
 						onClick={() => openModal("wallet")}
-						className="rounded-full bg-system-primary px-[clamp(12px,0.8vw+4px,16px)] py-[clamp(6px,0.4vw+2px,8px)] text-[clamp(13px,0.8rem+0.1vw,14px)] font-medium text-white transition-colors hover:opacity-90"
+						className="rounded-system-2xl px-4 py-2 text-sm font-medium text-white shadow-system-base transition-all duration-200 hover:brightness-110 bg-(image:--gradient-system-brand-button)"
 					>
-						Wallet
+						{t("wallet")}
 					</button>
-				) : (
-					<>
-						<button
-							onClick={() => openModal("login")}
-							className="rounded-full border-2 border-system-border px-[clamp(12px,0.8vw+4px,16px)] py-[clamp(6px,0.4vw+2px,8px)] text-[clamp(13px,0.8rem+0.1vw,14px)] font-medium text-system-text transition-opacity hover:opacity-80 bg-(image:--gradient-system-secondary)"
-						>
-							Sign In
-						</button>
-						<button
-							onClick={() => openModal("register")}
-							className="rounded-full border-2 border-system-border px-[clamp(12px,0.8vw+4px,16px)] py-[clamp(6px,0.4vw+2px,8px)] text-[clamp(13px,0.8rem+0.1vw,14px)] font-medium text-white transition-opacity hover:opacity-90 bg-(image:--gradient-system-brand-button)"
-						>
-							Register
-						</button>
-					</>
 				)}
 			</div>
 		</header>

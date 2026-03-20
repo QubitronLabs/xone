@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import type { BetHistoryEntry } from "../types";
 
@@ -9,6 +10,8 @@ interface BetHistoryTableProps {
 }
 
 export function BetHistoryTable({ bets, isLoading }: BetHistoryTableProps) {
+	const t = useTranslations("bets");
+
 	if (isLoading) {
 		return (
 			<div className="space-y-2">
@@ -27,18 +30,18 @@ export function BetHistoryTable({ bets, isLoading }: BetHistoryTableProps) {
 			<table className="w-full text-sm">
 				<thead className="bg-muted/30">
 					<tr className="text-left text-xs text-muted-foreground">
-						<th className="px-4 py-3 font-medium">Game</th>
+						<th className="px-4 py-3 font-medium">{t("game")}</th>
 						<th className="px-4 py-3 font-medium text-right">
-							Bet
+							{t("bet")}
 						</th>
 						<th className="px-4 py-3 font-medium text-right">
-							Multi
+							{t("multi")}
 						</th>
 						<th className="px-4 py-3 font-medium text-right">
-							Payout
+							{t("payout")}
 						</th>
 						<th className="px-4 py-3 font-medium text-right">
-							Time
+							{t("time")}
 						</th>
 					</tr>
 				</thead>

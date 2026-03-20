@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import { IMAGES } from "@/config/images.config";
 import {
@@ -22,6 +23,8 @@ import {
 } from "@/config/navigation";
 
 export default function Sidebar() {
+	const t = useTranslations("nav");
+	const tSidebar = useTranslations("sidebar");
 	const pathname = usePathname();
 
 	return (
@@ -149,7 +152,7 @@ export default function Sidebar() {
 																	: "text-system-subtle group-hover/nav:text-system-text"
 															}`}
 														>
-															{item.title}
+															{t(item.title)}
 														</span>
 													</SidebarMenuButton>
 												</SidebarMenuItem>
@@ -163,7 +166,7 @@ export default function Sidebar() {
 				</SidebarContent>
 
 				{/* Settings button */}
-				<SidebarFooter className="px-[clamp(12px,1vw+4px,20px)] pb-5 pt-0">
+				<SidebarFooter className="px-[clamp(12px,1vw+4px,20px)] pb-20 pt-0 md:pb-5">
 					<Link
 						href={settingsNavItem.href}
 						className="flex h-12 items-center justify-center gap-3 rounded-[16px] border-2 border-system-border/30 border- shadow-system-base bg-(image:--gradient-system-secondary) transition-all duration-200 hover:brightness-110"
@@ -176,7 +179,7 @@ export default function Sidebar() {
 							className="size-6"
 						/>
 						<span className="text-[clamp(14px,0.85rem+0.1vw,16px)] font-medium leading-5 text-system-subtle">
-							{settingsNavItem.title}
+							{t(settingsNavItem.title)}
 						</span>
 					</Link>
 

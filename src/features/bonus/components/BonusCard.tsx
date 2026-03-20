@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import type { Bonus } from "../types";
 
@@ -10,6 +11,9 @@ interface BonusCardProps {
 }
 
 export function BonusCard({ bonus, onClaim, isClaimPending }: BonusCardProps) {
+	const t = useTranslations("bonus");
+	const tCommon = useTranslations("common");
+
 	return (
 		<div className="overflow-hidden rounded-xl border border-border bg-card">
 			<div className="p-4">
@@ -19,7 +23,7 @@ export function BonusCard({ bonus, onClaim, isClaimPending }: BonusCardProps) {
 					</span>
 					{!bonus.isActive && (
 						<span className="rounded-full bg-muted px-2 py-0.5 text-xs text-muted-foreground">
-							Inactive
+							{tCommon("inactive")}
 						</span>
 					)}
 				</div>
@@ -30,21 +34,27 @@ export function BonusCard({ bonus, onClaim, isClaimPending }: BonusCardProps) {
 
 				<div className="mt-3 grid grid-cols-2 gap-2 text-xs">
 					<div>
-						<span className="text-muted-foreground">Bonus</span>
+						<span className="text-muted-foreground">
+							{t("bonusPercentage")}
+						</span>
 						<p className="font-medium">{bonus.percentage}%</p>
 					</div>
 					<div>
-						<span className="text-muted-foreground">Max</span>
+						<span className="text-muted-foreground">
+							{t("maxAmount")}
+						</span>
 						<p className="font-medium">${bonus.maxAmount}</p>
 					</div>
 					<div>
 						<span className="text-muted-foreground">
-							Min Deposit
+							{t("minDeposit")}
 						</span>
 						<p className="font-medium">${bonus.minDeposit}</p>
 					</div>
 					<div>
-						<span className="text-muted-foreground">Wager</span>
+						<span className="text-muted-foreground">
+							{t("wagerRequirement")}
+						</span>
 						<p className="font-medium">{bonus.wagerRequirement}x</p>
 					</div>
 				</div>
@@ -61,7 +71,7 @@ export function BonusCard({ bonus, onClaim, isClaimPending }: BonusCardProps) {
 							isClaimPending && "opacity-50",
 						)}
 					>
-						{isClaimPending ? "Claiming…" : "Claim Bonus"}
+						{isClaimPending ? t("claiming") : t("claimBonus")}
 					</button>
 				</div>
 			)}

@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import type { GamesFilterParams } from "../types";
 
 interface GameFiltersProps {
@@ -15,6 +16,8 @@ export function GameFilters({
 	categories = [],
 	providers = [],
 }: GameFiltersProps) {
+	const t = useTranslations("games");
+
 	return (
 		<div className="flex flex-wrap gap-2">
 			<select
@@ -28,7 +31,7 @@ export function GameFilters({
 				}
 				className="rounded-lg border border-border bg-background px-3 py-2 text-sm"
 			>
-				<option value="">All Categories</option>
+				<option value="">{t("allCategories")}</option>
 				{categories.map((cat) => (
 					<option key={cat.slug} value={cat.slug}>
 						{cat.name}
@@ -47,7 +50,7 @@ export function GameFilters({
 				}
 				className="rounded-lg border border-border bg-background px-3 py-2 text-sm"
 			>
-				<option value="">All Providers</option>
+				<option value="">{t("allProviders")}</option>
 				{providers.map((p) => (
 					<option key={p.slug} value={p.slug}>
 						{p.name}
@@ -65,10 +68,10 @@ export function GameFilters({
 				}
 				className="rounded-lg border border-border bg-background px-3 py-2 text-sm"
 			>
-				<option value="popular">Popular</option>
-				<option value="newest">Newest</option>
-				<option value="a-z">A–Z</option>
-				<option value="z-a">Z–A</option>
+				<option value="popular">{t("sort.popular")}</option>
+				<option value="newest">{t("sort.newest")}</option>
+				<option value="a-z">{t("sort.a-z")}</option>
+				<option value="z-a">{t("sort.z-a")}</option>
 			</select>
 		</div>
 	);

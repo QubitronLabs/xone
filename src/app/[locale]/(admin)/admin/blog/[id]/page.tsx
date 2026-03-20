@@ -7,6 +7,7 @@ export default async function AdminBlogEditPage({
 }) {
 	const { id } = await params;
 	const t = useTranslations("admin");
+	const tPages = useTranslations("pages");
 	const isNew = id === "new";
 
 	return (
@@ -15,7 +16,7 @@ export default async function AdminBlogEditPage({
 				{isNew ? t("createPost") : t("editPost")}
 			</h1>
 			<p className="text-muted-foreground">
-				Blog post editor will be rendered here (ID: {id}).
+				{tPages("blogEditorDescription", { id })}
 			</p>
 		</div>
 	);

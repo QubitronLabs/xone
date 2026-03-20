@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import {
 	footerSocialLinks,
@@ -60,6 +61,7 @@ function SocialLink({
 }
 
 export function Footer() {
+	const t = useTranslations("footer");
 	return (
 		<footer className="mx-[clamp(16px,1.5vw,24px)] rounded-system-xl bg-(image:--gradient-system-surface) px-[clamp(20px,2vw+8px,48px)] py-[clamp(24px,2vw+8px,48px)] [font-variation-settings:var(--font-system-variation)]">
 			{/* ── Main content: Info + Navigation ── */}
@@ -69,10 +71,7 @@ export function Footer() {
 					<FooterLogo />
 
 					<p className="text-center text-[clamp(12px,0.7rem+0.1vw,13px)] leading-[1.48] font-normal text-system-dim-dark lg:text-left">
-						This website offers gaming with risk experience. To be a
-						user of our site you must be over 18 y.o. We are not
-						responsible for the violation of your local laws related
-						to igaming.
+						{t("disclaimer")}
 					</p>
 
 					<div className="flex items-center gap-[clamp(8px,0.6vw+4px,16px)]">
@@ -95,7 +94,7 @@ export function Footer() {
 							className="flex flex-1 flex-col gap-[clamp(16px,1vw+8px,24px)]"
 						>
 							<h3 className="text-[clamp(14px,0.85rem+0.1vw,16px)] font-medium leading-6 tracking-[0.32px] text-white">
-								{group.title}
+								{t(group.title)}
 							</h3>
 							<ul className="flex flex-col gap-[clamp(6px,0.5vw+4px,8px)]">
 								{group.links.map((link) => (
@@ -104,7 +103,7 @@ export function Footer() {
 											href={link.href}
 											className="text-[clamp(14px,0.85rem+0.1vw,16px)] font-medium leading-6 text-system-muted transition-colors hover:text-white"
 										>
-											{link.title}
+											{t(link.title)}
 										</Link>
 									</li>
 								))}
@@ -117,39 +116,33 @@ export function Footer() {
 				<div className="w-full lg:hidden">
 					<Accordion
 						className="rounded-none border-none"
-						defaultValue={["about-us"]}
+						defaultValue={["aboutUs"]}
 					>
-						{footerLinkGroups.map((group) => {
-							const value = group.title
-								.toLowerCase()
-								.replace(/\s*\/\s*/g, "-")
-								.replace(/\s+/g, "-");
-							return (
-								<AccordionItem
-									key={group.title}
-									value={value}
-									className="border-system-divider data-open:bg-transparent"
-								>
-									<AccordionTrigger className="text-[clamp(14px,0.85rem+0.1vw,16px)] font-medium text-white hover:no-underline">
-										{group.title}
-									</AccordionTrigger>
-									<AccordionContent className="[&_a]:no-underline!">
-										<ul className="flex flex-col gap-3">
-											{group.links.map((link) => (
-												<li key={link.title}>
-													<Link
-														href={link.href}
-														className="text-[clamp(14px,0.85rem+0.1vw,16px)] font-medium text-system-muted transition-colors hover:text-white"
-													>
-														{link.title}
-													</Link>
-												</li>
-											))}
-										</ul>
-									</AccordionContent>
-								</AccordionItem>
-							);
-						})}
+						{footerLinkGroups.map((group) => (
+							<AccordionItem
+								key={group.title}
+								value={group.title}
+								className="border-system-divider data-open:bg-transparent"
+							>
+								<AccordionTrigger className="text-[clamp(14px,0.85rem+0.1vw,16px)] font-medium text-white hover:no-underline">
+									{t(group.title)}
+								</AccordionTrigger>
+								<AccordionContent className="[&_a]:no-underline!">
+									<ul className="flex flex-col gap-3">
+										{group.links.map((link) => (
+											<li key={link.title}>
+												<Link
+													href={link.href}
+													className="text-[clamp(14px,0.85rem+0.1vw,16px)] font-medium text-system-muted transition-colors hover:text-white"
+												>
+													{t(link.title)}
+												</Link>
+											</li>
+										))}
+									</ul>
+								</AccordionContent>
+							</AccordionItem>
+						))}
 					</Accordion>
 				</div>
 			</div>
@@ -186,8 +179,7 @@ export function Footer() {
 
 			{/* ── Copyright ── */}
 			<p className="text-center text-[clamp(12px,0.75rem+0.1vw,14px)] leading-6 tracking-[0.14px] text-system-muted">
-				Copyright © <span className="system-text-brand">******</span>{" "}
-				All Reserved
+				{t("copyright", { brand: "******" })}
 			</p>
 		</footer>
 	);

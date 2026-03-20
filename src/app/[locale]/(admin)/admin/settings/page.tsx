@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { useTranslations } from "next-intl";
 
-export const metadata: Metadata = {
-	title: "Settings",
-};
+export async function generateMetadata(): Promise<Metadata> {
+	const t = await getTranslations("admin");
+	return { title: t("settings") };
+}
 
 export default function AdminSettingsPage() {
 	const t = useTranslations("admin");
+	const tPages = useTranslations("pages");
 
 	return (
 		<div className="space-y-6">
@@ -14,7 +17,7 @@ export default function AdminSettingsPage() {
 				{t("settings")}
 			</h1>
 			<p className="text-muted-foreground">
-				Application settings interface will be rendered here.
+				{tPages("settingsDescription")}
 			</p>
 		</div>
 	);

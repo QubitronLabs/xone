@@ -423,6 +423,59 @@
 	background-clip: text;
 }
 
+/* ============================================================
+   SCROLLBAR UTILITIES
+   ============================================================ */
+
+/* Thin scrollbar width */
+.system-scrollbar-thin {
+	scrollbar-width: thin;
+}
+.system-scrollbar-thin::-webkit-scrollbar {
+	width: 4px;
+	height: 4px;
+}
+
+/* Hide scrollbar completely */
+.system-scrollbar-none {
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+}
+.system-scrollbar-none::-webkit-scrollbar {
+	display: none;
+}
+
+/* Hide scrollbar thumbs only */
+.system-scrollbar-no-thumb::-webkit-scrollbar-thumb {
+	background: transparent;
+}
+
+/* Hide scrollbar track container */
+.system-scrollbar-no-track::-webkit-scrollbar-track {
+	background: transparent;
+	border: none;
+	box-shadow: none;
+}
+
+/* Theme-matched scrollbar color */
+.system-scrollbar-themed {
+	scrollbar-color: var(--color-system-divider) transparent;
+}
+.system-scrollbar-themed::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
+}
+.system-scrollbar-themed::-webkit-scrollbar-thumb {
+	background: var(--color-system-divider);
+	border-radius: var(--radius-system-full);
+}
+.system-scrollbar-themed::-webkit-scrollbar-thumb:hover {
+	background: var(--color-system-border-strong);
+}
+.system-scrollbar-themed::-webkit-scrollbar-track {
+	background: transparent;
+}
+
 .system-text-brand {
 	background: var(--gradient-system-logo);
 	-webkit-background-clip: text;

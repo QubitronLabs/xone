@@ -1,12 +1,14 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { useTranslations } from "next-intl";
 import { useSearch } from "../hooks/useSearch";
 import { SearchResults } from "./SearchResults";
 import { useAppStore } from "@/store";
 import type { Game } from "@/features/games/types";
 
 export function SearchModal() {
+	const t = useTranslations("search");
 	const [query, setQuery] = useState("");
 	const { activeModal, openModal, closeModal } = useAppStore();
 	const inputRef = useRef<HTMLInputElement>(null);
@@ -67,11 +69,11 @@ export function SearchModal() {
 						type="text"
 						value={query}
 						onChange={(e) => setQuery(e.target.value)}
-						placeholder="Search games…"
+						placeholder={t("placeholder")}
 						className="flex-1 bg-transparent px-3 py-4 text-sm outline-none placeholder:text-muted-foreground"
 					/>
 					<kbd className="rounded border border-border bg-muted px-1.5 py-0.5 text-[10px] text-muted-foreground">
-						ESC
+						{t("escKey")}
 					</kbd>
 				</div>
 				<SearchResults

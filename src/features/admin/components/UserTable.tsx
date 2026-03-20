@@ -1,10 +1,13 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import { useAdminUsers } from "../hooks/useAdminData";
 import { useState } from "react";
 
 export function UserTable() {
+	const t = useTranslations("admin");
+	const tCommon = useTranslations("common");
 	const [page, setPage] = useState(1);
 	const { data, isLoading } = useAdminUsers(page);
 
@@ -28,12 +31,14 @@ export function UserTable() {
 			<table className="w-full text-sm">
 				<thead className="bg-muted/30">
 					<tr className="text-left text-xs text-muted-foreground">
-						<th className="px-4 py-3 font-medium">Username</th>
-						<th className="px-4 py-3 font-medium">Email</th>
-						<th className="px-4 py-3 font-medium">Role</th>
-						<th className="px-4 py-3 font-medium">Status</th>
+						<th className="px-4 py-3 font-medium">
+							{t("username")}
+						</th>
+						<th className="px-4 py-3 font-medium">{t("email")}</th>
+						<th className="px-4 py-3 font-medium">{t("role")}</th>
+						<th className="px-4 py-3 font-medium">{t("status")}</th>
 						<th className="px-4 py-3 font-medium text-right">
-							Wagered
+							{tCommon("amount")}
 						</th>
 					</tr>
 				</thead>
@@ -81,10 +86,10 @@ export function UserTable() {
 						disabled={page <= 1}
 						className="rounded-lg border border-border px-3 py-1.5 text-sm disabled:opacity-50"
 					>
-						Previous
+						{tCommon("previous")}
 					</button>
 					<span className="text-sm text-muted-foreground">
-						Page {page} of {data.totalPages}
+						{tCommon("page", { page, total: data.totalPages })}
 					</span>
 					<button
 						type="button"
@@ -92,7 +97,7 @@ export function UserTable() {
 						disabled={!data.hasMore}
 						className="rounded-lg border border-border px-3 py-1.5 text-sm disabled:opacity-50"
 					>
-						Next
+						{tCommon("next")}
 					</button>
 				</div>
 			)}

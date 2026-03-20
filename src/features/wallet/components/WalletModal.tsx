@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useWalletStore } from "../store/wallet.slice";
 import { OverviewTab } from "./OverviewTab";
 import { DepositTab } from "./DepositTab";
@@ -14,6 +15,7 @@ const tabs = [
 ] as const;
 
 export function WalletModal() {
+	const t = useTranslations("wallet");
 	const activeTab = useWalletStore((s) => s.activeTab);
 	const setActiveTab = useWalletStore((s) => s.setActiveTab);
 

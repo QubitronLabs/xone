@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { useTranslations } from "next-intl";
 
-export const metadata: Metadata = {
-	title: "Terms and Conditions",
-};
+export async function generateMetadata(): Promise<Metadata> {
+	const t = await getTranslations("pages");
+	return { title: t("termsAndConditions") };
+}
 
 export default function TermsPage() {
 	const t = useTranslations("pages");
@@ -13,9 +15,7 @@ export default function TermsPage() {
 			<h1 className="mb-8 text-3xl font-bold text-foreground">
 				{t("termsAndConditions")}
 			</h1>
-			<p className="text-muted-foreground">
-				Terms and conditions content will be loaded here.
-			</p>
+			<p className="text-muted-foreground">{t("termsDescription")}</p>
 		</div>
 	);
 }

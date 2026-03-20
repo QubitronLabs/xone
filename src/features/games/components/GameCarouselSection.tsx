@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useCallback } from "react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -25,6 +26,7 @@ export function GameCarouselSection({
 	viewAllHref,
 	onPlay,
 }: GameCarouselSectionProps) {
+	const t = useTranslations("common");
 	const scrollRef = useRef<HTMLDivElement>(null);
 
 	const scroll = useCallback((direction: "left" | "right") => {
@@ -135,10 +137,7 @@ export function GameCarouselSection({
 						)
 					: games.map((game) => (
 							<div key={game.id} className="snap-start">
-								<GameCarouselCard
-									game={game}
-									onPlay={onPlay}
-								/>
+								<GameCarouselCard game={game} onPlay={onPlay} />
 							</div>
 						))}
 			</div>
