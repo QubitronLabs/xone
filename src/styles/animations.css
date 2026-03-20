@@ -1,0 +1,217 @@
+/* ============================================================
+   XONE DESIGN SYSTEM — Animations
+   ============================================================
+   Keyframes, timing variables, and reusable animation classes.
+   ============================================================ */
+
+:root {
+	/* ────────────────────────────────────────────────────────────
+     Animation Timing
+     ──────────────────────────────────────────────────────────── */
+
+	--animation-system-duration-fast: 150ms;
+	--animation-system-duration: 200ms;
+	--animation-system-duration-slow: 300ms;
+	--animation-system-duration-modal: 400ms;
+	--animation-system-easing: cubic-bezier(0.4, 0, 0.2, 1);
+	--animation-system-easing-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+	--animation-system-easing-out: cubic-bezier(0, 0, 0.2, 1);
+	--animation-system-easing-in: cubic-bezier(0.4, 0, 1, 1);
+}
+
+/* ────────────────────────────────────────────────────────────
+   Keyframes
+   ──────────────────────────────────────────────────────────── */
+
+@keyframes system-fade-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes system-fade-out {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}
+
+@keyframes system-slide-up {
+	from {
+		opacity: 0;
+		transform: translateY(16px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes system-slide-down {
+	from {
+		opacity: 0;
+		transform: translateY(-16px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes system-slide-in-right {
+	from {
+		opacity: 0;
+		transform: translateX(24px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes system-slide-in-left {
+	from {
+		opacity: 0;
+		transform: translateX(-24px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes system-scale-in {
+	from {
+		opacity: 0;
+		transform: scale(0.95);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+@keyframes system-pulse-glow {
+	0%,
+	100% {
+		box-shadow: var(--shadow-system-glow);
+	}
+	50% {
+		box-shadow: 0px 4px 20px
+			color-mix(in srgb, var(--color-system-primary-mid), transparent 60%);
+	}
+}
+
+@keyframes system-spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes system-shimmer {
+	0% {
+		background-position: -200% center;
+	}
+	100% {
+		background-position: 200% center;
+	}
+}
+
+@keyframes system-bounce-subtle {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-4px);
+	}
+}
+
+/* ────────────────────────────────────────────────────────────
+   Reusable Animation Classes
+   ──────────────────────────────────────────────────────────── */
+
+.system-animate-fade-in {
+	animation: system-fade-in var(--animation-system-duration)
+		var(--animation-system-easing) both;
+}
+
+.system-animate-fade-out {
+	animation: system-fade-out var(--animation-system-duration)
+		var(--animation-system-easing) both;
+}
+
+.system-animate-slide-up {
+	animation: system-slide-up var(--animation-system-duration-slow)
+		var(--animation-system-easing-out) both;
+}
+
+.system-animate-slide-down {
+	animation: system-slide-down var(--animation-system-duration-slow)
+		var(--animation-system-easing-out) both;
+}
+
+.system-animate-slide-in-right {
+	animation: system-slide-in-right var(--animation-system-duration-slow)
+		var(--animation-system-easing-out) both;
+}
+
+.system-animate-slide-in-left {
+	animation: system-slide-in-left var(--animation-system-duration-slow)
+		var(--animation-system-easing-out) both;
+}
+
+.system-animate-scale-in {
+	animation: system-scale-in var(--animation-system-duration-modal)
+		var(--animation-system-easing-spring) both;
+}
+
+.system-animate-pulse-glow {
+	animation: system-pulse-glow 2s var(--animation-system-easing) infinite;
+}
+
+.system-animate-spin {
+	animation: system-spin 1s linear infinite;
+}
+
+.system-animate-shimmer {
+	background-size: 200% 100%;
+	animation: system-shimmer 1.5s var(--animation-system-easing) infinite;
+}
+
+.system-animate-bounce {
+	animation: system-bounce-subtle 1s var(--animation-system-easing) infinite;
+}
+
+/* ────────────────────────────────────────────────────────────
+   Transition Utilities
+   ──────────────────────────────────────────────────────────── */
+
+.system-transition {
+	transition-property:
+		color, background-color, border-color, box-shadow, opacity, transform;
+	transition-duration: var(--animation-system-duration);
+	transition-timing-function: var(--animation-system-easing);
+}
+
+.system-transition-fast {
+	transition-property:
+		color, background-color, border-color, box-shadow, opacity, transform;
+	transition-duration: var(--animation-system-duration-fast);
+	transition-timing-function: var(--animation-system-easing);
+}
+
+.system-transition-slow {
+	transition-property:
+		color, background-color, border-color, box-shadow, opacity, transform;
+	transition-duration: var(--animation-system-duration-slow);
+	transition-timing-function: var(--animation-system-easing);
+}

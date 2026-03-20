@@ -1,0 +1,447 @@
+/* ============================================================
+   XONE DESIGN SYSTEM — Variable Tokens
+   ============================================================
+   Single source of truth for ALL design tokens.
+   Extracted from Figma: iOAsLMFTsuLNoKiXwo2vhB
+   ============================================================ */
+
+:root {
+	/* ────────────────────────────────────────────────────────────
+     1. COLORS
+     ──────────────────────────────────────────────────────────── */
+
+	/* Primary */
+	--color-system-primary: #7926d7;
+	--color-system-primary-mid: #9849f5;
+	--color-system-primary-light: #cd61ff;
+
+	/* Ink / Near-Black */
+	--color-system-ink: #06060e;
+
+	/* Backgrounds */
+	--color-system-bg: #110f20;
+	--color-system-bg-deep: #120f21;
+	--color-system-bg-alt: #130e21;
+	--color-system-input: #14111f;
+	--color-system-deep: #151526;
+	--color-system-deep-alt: #1b1120;
+	--color-system-container: #19162b;
+	--color-system-container-deep: #1a132c;
+
+	/* Surfaces */
+	--color-system-surface: #1d1c34;
+	--color-system-surface-alt: #271c2d;
+	--color-system-overlay: #1f1f38;
+	--color-system-overlay-alt: #302136;
+	--color-system-overlay-mid: #2f2343;
+	--color-system-modal-base: #2c2446;
+	--color-system-card: #272746;
+	--color-system-card-alt: #392741;
+
+	/* Glass */
+	--color-system-glass: #2d2c4a;
+	--color-system-glass-alt: #422e4b;
+
+	/* Borders */
+	--color-system-border: #bbacd8;
+	--color-system-border-strong: #4c406f;
+	--color-system-divider: #302847;
+	--color-system-stroke: #657099;
+
+	/* Text */
+	--color-system-white: #ffffff;
+	--color-system-text: #cdc7e9;
+	--color-system-muted: #988fbe;
+	--color-system-subtle: #a69fc8;
+	--color-system-soft: #b1abd0;
+	--color-system-soft-bright: #b9b5d0;
+	--color-system-shimmer: #bfb7e4;
+	--color-system-placeholder: #585274;
+	--color-system-placeholder-alt: #71617a;
+	--color-system-dim: #6d668c;
+	--color-system-dim-dark: #696286;
+
+	/* Accent */
+	--color-system-accent-soft: rgba(164, 125, 235, 0.24);
+	--color-system-accent-soft-deep: rgba(151, 112, 222, 0.24);
+	--color-system-highlight: #bbb1e2;
+
+	/* Status */
+	--color-system-success: #51e079;
+	--color-system-success-bright: #8effbb;
+	--color-system-warning: #fcb95b;
+
+	/* Orange (badges / accents) */
+	--color-system-orange: #f5a649;
+	--color-system-orange-dark: #d75b26;
+	--color-system-orange-light: #ffc061;
+
+	/* Avatars */
+	--color-system-avatar-purple: #3c3257;
+	--color-system-avatar-lavender: #908cc2;
+	--color-system-avatar-peach: #dfc9c4;
+	--color-system-avatar-mint: #c3fae2;
+
+	/* ────────────────────────────────────────────────────────────
+     2. GRADIENTS
+     ──────────────────────────────────────────────────────────── */
+
+	/* Primary gradient stops (reusable across different angles) */
+	--gradient-system-primary-stops:
+		var(--color-system-primary) 53.02%,
+		var(--color-system-primary-mid) 33.24%,
+		var(--color-system-primary-light) 121.23%;
+
+	/* Primary gradients */
+	--gradient-system-primary: linear-gradient(
+		28.44deg,
+		var(--gradient-system-primary-stops)
+	);
+	--gradient-system-primary-flat: linear-gradient(
+		10.23deg,
+		var(--gradient-system-primary-stops)
+	);
+	--gradient-system-logo: linear-gradient(
+		16.91deg,
+		var(--gradient-system-primary-stops)
+	);
+	--gradient-system-brand-button: linear-gradient(
+		4.13deg,
+		var(--gradient-system-primary-stops)
+	);
+
+	/* Primary faded (48% opacity) */
+	--gradient-system-primary-faded: linear-gradient(
+		15.62deg,
+		color-mix(in srgb, var(--color-system-primary), transparent 52%) 53.02%,
+		color-mix(in srgb, var(--color-system-primary-mid), transparent 52%)
+			33.24%,
+		color-mix(in srgb, var(--color-system-primary-light), transparent 52%)
+			121.23%
+	);
+
+	/* Page */
+	--gradient-system-page: linear-gradient(
+		180deg,
+		var(--color-system-bg) 0%,
+		var(--color-system-bg-alt) 100%
+	);
+
+	/* Page overlay */
+	--gradient-system-page-overlay: linear-gradient(
+		180deg,
+		color-mix(in srgb, var(--color-system-overlay), transparent 68%) 0%,
+		color-mix(in srgb, var(--color-system-overlay-alt), transparent 68%)
+			100%
+	);
+
+	/* Card / Surface / VIP */
+	--gradient-system-card: linear-gradient(
+		180deg,
+		var(--color-system-card) 34.17%,
+		var(--color-system-card-alt) 202.5%
+	);
+	--gradient-system-surface: linear-gradient(
+		180deg,
+		var(--color-system-surface) 34.17%,
+		var(--color-system-surface-alt) 202.5%
+	);
+	--gradient-system-vip: linear-gradient(
+		180deg,
+		var(--color-system-deep) 34.17%,
+		var(--color-system-deep-alt) 202.5%
+	);
+
+	/* Secondary (purple tint layer + dark surface) */
+	--gradient-system-secondary:
+		linear-gradient(
+			90deg,
+			var(--color-system-accent-soft) 0%,
+			var(--color-system-accent-soft) 100%
+		),
+		var(--gradient-system-surface);
+
+	/* Glass variants */
+	--gradient-system-glass: linear-gradient(
+		180deg,
+		color-mix(in srgb, var(--color-system-glass), transparent 36%) 34.17%,
+		color-mix(in srgb, var(--color-system-glass-alt), transparent 36%)
+			293.45%
+	);
+	--gradient-system-glass-opaque: linear-gradient(
+		180deg,
+		var(--color-system-glass) 34.17%,
+		var(--color-system-glass-alt) 293.45%
+	);
+	--gradient-system-glass-dense: linear-gradient(
+		180deg,
+		color-mix(in srgb, var(--color-system-glass), transparent 16%) 34.17%,
+		color-mix(in srgb, var(--color-system-glass-alt), transparent 16%)
+			293.45%
+	);
+
+	/* Input / Balance area */
+	--gradient-system-input:
+		linear-gradient(
+			180deg,
+			transparent -68.75%,
+			color-mix(in srgb, var(--color-system-orange), transparent 95%) 100%
+		),
+		var(--color-system-input);
+
+	/* Modal */
+	--gradient-system-modal-overlay: linear-gradient(
+		180deg,
+		color-mix(in srgb, var(--color-system-bg), transparent 36%) 0%,
+		color-mix(in srgb, var(--color-system-bg-alt), transparent 36%) 100%
+	);
+	--gradient-system-modal:
+		linear-gradient(
+			180deg,
+			color-mix(in srgb, var(--color-system-overlay), transparent 36%) 0%,
+			color-mix(in srgb, var(--color-system-overlay-alt), transparent 36%)
+				198.54%
+		),
+		var(--color-system-modal-base);
+
+	/* Auth dialog — layered page-overlay + page */
+	--gradient-system-auth-dialog:
+		var(--gradient-system-page-overlay), var(--gradient-system-page);
+	--gradient-system-auth-branding:
+		linear-gradient(
+			84.34deg,
+			color-mix(in srgb, var(--color-system-ink), transparent 59%) 5.02%,
+			transparent 37%
+		),
+		linear-gradient(
+			180deg,
+			color-mix(in srgb, var(--color-system-overlay), transparent 60%) 0%,
+			color-mix(in srgb, var(--color-system-deep-alt), transparent 52%)
+				100%
+		);
+
+	/* Hero overlay */
+	--gradient-system-hero-overlay: linear-gradient(
+		180deg,
+		color-mix(in srgb, var(--color-system-bg-alt), transparent 60%) 0%,
+		color-mix(in srgb, var(--color-system-deep-alt), transparent 52%) 100%
+	);
+
+	/* Game card overlay */
+	--gradient-system-game-overlay: linear-gradient(
+		180deg,
+		color-mix(in srgb, var(--color-system-overlay), transparent 94%) 47.63%,
+		color-mix(in srgb, var(--color-system-overlay-alt), transparent 52%)
+			72.34%
+	);
+
+	/* Chat bonus area */
+	--gradient-system-chat-bonus:
+		linear-gradient(
+			90deg,
+			transparent 0%,
+			color-mix(
+					in srgb,
+					var(--color-system-primary-light),
+					transparent 92%
+				)
+				100%
+		),
+		linear-gradient(
+			180deg,
+			var(--color-system-overlay) 34.17%,
+			var(--color-system-overlay-mid) 88.9%,
+			var(--color-system-overlay-alt) 202.5%
+		);
+
+	/* Badge — MODER */
+	--gradient-system-badge-mod: linear-gradient(
+		26.36deg,
+		var(--color-system-orange-dark) 42.84%,
+		var(--color-system-orange) 12.59%,
+		var(--color-system-orange-light) 69.13%
+	);
+
+	/* Sidebar — BONUS button overlay (purple faded) */
+	--gradient-system-sidebar-bonus: linear-gradient(
+		15.62deg,
+		color-mix(in srgb, var(--color-system-primary), transparent 52%) 53.02%,
+		color-mix(in srgb, var(--color-system-primary-mid), transparent 52%)
+			33.24%,
+		color-mix(in srgb, var(--color-system-primary-light), transparent 52%)
+			121.23%
+	);
+
+	/* Sidebar — WHEEL button overlay (orange faded) */
+	--gradient-system-sidebar-wheel: linear-gradient(
+		67.44deg,
+		color-mix(in srgb, var(--color-system-orange-dark), transparent 52%)
+			13.85%,
+		color-mix(in srgb, var(--color-system-orange), transparent 52%) 49.46%,
+		color-mix(in srgb, var(--color-system-orange-light), transparent 52%)
+			85.79%
+	);
+
+	/* Sidebar — Active nav item highlight */
+	--gradient-system-sidebar-active: linear-gradient(
+		28.44deg,
+		color-mix(in srgb, var(--color-system-primary), transparent 64%) 53.02%,
+		color-mix(in srgb, var(--color-system-primary-mid), transparent 64%)
+			33.24%,
+		color-mix(in srgb, var(--color-system-primary-light), transparent 64%)
+			121.23%
+	);
+
+	/* Sidebar — container background */
+	--gradient-system-sidebar-bg: linear-gradient(
+		180deg,
+		var(--color-system-container) 0%,
+		var(--color-system-container-deep) 100%
+	);
+
+	/* Text gradients */
+	--gradient-system-text-heading: linear-gradient(
+		180deg,
+		var(--color-system-white) 0%,
+		var(--color-system-shimmer) 187.5%
+	);
+	--gradient-system-text-brand: linear-gradient(
+		3.61deg,
+		var(--gradient-system-primary-stops)
+	);
+
+	/* ────────────────────────────────────────────────────────────
+     3. TYPOGRAPHY
+     ──────────────────────────────────────────────────────────── */
+
+	--font-system-primary: "Fredoka", sans-serif;
+	--font-system-logo: "Notable", sans-serif;
+	--font-system-variation: "wdth" 100;
+
+	/* ────────────────────────────────────────────────────────────
+     4. SPACING
+     ──────────────────────────────────────────────────────────── */
+
+	--space-system-0: 0px;
+	--space-system-0-5: 2px;
+	--space-system-1: 4px;
+	--space-system-2: 8px;
+	--space-system-3: 12px;
+	--space-system-4: 16px;
+	--space-system-5: 20px;
+	--space-system-6: 24px;
+	--space-system-8: 32px;
+	--space-system-10: 40px;
+	--space-system-12: 48px;
+	--space-system-16: 64px;
+
+	/* ────────────────────────────────────────────────────────────
+     5. BORDER RADIUS
+     ──────────────────────────────────────────────────────────── */
+
+	--radius-system-xs: 6px;
+	--radius-system-sm: 8px;
+	--radius-system-base: 12px;
+	--radius-system-lg: 14px;
+	--radius-system-xl: 16px;
+	--radius-system-2xl: 20px;
+	--radius-system-3xl: 22px;
+	--radius-system-4xl: 24px;
+	--radius-system-5xl: 32px;
+	--radius-system-full: 71px;
+
+	/* ────────────────────────────────────────────────────────────
+     6. SHADOWS
+     ──────────────────────────────────────────────────────────── */
+
+	--shadow-system-base: 0px 8px 8px rgba(0, 0, 0, 0.04);
+	--shadow-system-glow: 0px 4px 12px
+		color-mix(in srgb, var(--color-system-primary-mid), transparent 76%);
+	--shadow-system-combined:
+		0px 4px 12px
+			color-mix(in srgb, var(--color-system-primary-mid), transparent 76%),
+		0px 8px 8px rgba(0, 0, 0, 0.04);
+	--shadow-system-inner-panel: inset 0px 2px 4px
+		color-mix(in srgb, var(--color-system-highlight), transparent 96%);
+	--shadow-system-inner-input: inset 0px 4px 4px
+		color-mix(in srgb, var(--color-system-ink), transparent 88%);
+	--shadow-system-inner-banner: inset 0px 4px 12px
+		color-mix(in srgb, var(--color-system-highlight), transparent 88%);
+	--shadow-system-inner-card: inset 0px 4px 4px
+		color-mix(in srgb, var(--color-system-highlight), transparent 96%);
+	--shadow-system-inner-button: inset 0px 4px 4px
+		color-mix(in srgb, var(--color-system-highlight), transparent 76%);
+
+	/* ────────────────────────────────────────────────────────────
+     7. BLUR
+     ──────────────────────────────────────────────────────────── */
+
+	--blur-system-glass: 42px;
+	--blur-system-glow: 8px;
+
+	/* ────────────────────────────────────────────────────────────
+     8. LAYOUT
+     ──────────────────────────────────────────────────────────── */
+
+	--layout-system-sidebar: 260px;
+	--layout-system-content-start: 320px;
+	--layout-system-content: 1180px;
+	--layout-system-right-panel: 360px;
+	--layout-system-canvas: 1920px;
+}
+
+/* ============================================================
+   REUSABLE UTILITY CLASSES
+   ============================================================ */
+
+/* Glass Panels */
+.system-glass {
+	background: var(--gradient-system-glass);
+	backdrop-filter: blur(var(--blur-system-glass));
+	border-radius: var(--radius-system-2xl);
+	box-shadow: var(--shadow-system-base);
+}
+
+.system-glass-opaque {
+	background: var(--gradient-system-glass-opaque);
+	backdrop-filter: blur(var(--blur-system-glass));
+	border-radius: var(--radius-system-base);
+	box-shadow: var(--shadow-system-base);
+}
+
+.system-glass-dense {
+	background: var(--gradient-system-glass-dense);
+	backdrop-filter: blur(var(--blur-system-glass));
+	border-radius: var(--radius-system-4xl);
+}
+
+/* Gradient Text */
+.system-text-gradient {
+	background: var(--gradient-system-text-heading);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+.system-text-brand {
+	background: var(--gradient-system-logo);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+/* Inner Shadow Overlay (use with position: relative) */
+.system-inner-shadow::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	border-radius: inherit;
+	box-shadow: var(--shadow-system-inner-panel);
+	pointer-events: none;
+}
+
+/* Font variation helper */
+.system-font {
+	font-family: var(--font-system-primary);
+	font-variation-settings: var(--font-system-variation);
+}
